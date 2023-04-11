@@ -11,25 +11,34 @@ createApp({
     data() {
         return {
             mailAPI: 'https://flynn.boolean.careers/exercises/api/random/mail',
-            mailAddress: '',
+            mailAddress: null,
             mailList: []
         }
     },
-    methods:{
-        getMailAddresses() {
+    methods: {
+        /**
+         * function to populate the mails list
+         */
+        getMailList() {
+            // through a for loop that goes from 0 to 9
             for (let i = 0; i < 10; i++) {
+                // make a request to the API
                 axios
                 .get(this.mailAPI)
                 .then(response => {
                 //console.log(response)
-                this.mailList.push(response.data)
 
-                console.log(this.mailList)
+                //assign every response data object to the empty property mailAddress
+                this.mailAddress = response.data
+                //push the result mail addresses into the mail list array 
+                this.mailList.push(this.mailAddress)
+
+                //console.log(this.mailList)
             })
             }
         }
     },
     mounted() {
-        this.getMailAddresses()
+        this.getMailList()
     }
 }).mount('#app')

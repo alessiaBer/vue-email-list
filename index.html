@@ -11,6 +11,7 @@
     
     <div id="app">
         <h1>Email List</h1>
+        <!-- condition to display the list only when it's complete-->
         <ul v-if="mailList.length === 10">
             <li v-for="mail in mailList">
                 {{mail.response}}
