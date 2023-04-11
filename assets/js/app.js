@@ -10,7 +10,27 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            message: 'Hello Vue!'
+            mailAPI: 'https://flynn.boolean.careers/exercises/api/random/mail',
+            mailAddress: '',
+            mailList: []
         }
+    },
+    methods:{
+        getMailAddresses() {
+            for (let i = 0; i < 10; i++) {
+                axios
+                .get(this.mailAPI)
+                .then(response => {
+                //console.log(response)
+                this.mailList.push(response.data)
+
+                console.log(this.mailList)
+            })
+            }
+
+        }
+    },
+    mounted() {
+        this.getMailAddresses()
     }
 }).mount('#app')
