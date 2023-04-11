@@ -27,7 +27,6 @@ createApp({
                 console.log(this.mailList)
             })
             }
-
         }
     },
     mounted() {
